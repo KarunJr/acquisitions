@@ -53,6 +53,21 @@ export const signin = async (req: Request, res: Response) => {
   });
 };
 
+export const signout = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    cookies.clear(res, 'token');
+    logger.info('User signed out successfully');
+    res.status(200).json({ message: 'User signed out successfully' });
+  } catch (error) {
+    logger.error('Signout error', error);
+    next(error);
+  }
+};
+
 // export const signup = async (
 //   req: Request,
 //   res: Response,
@@ -138,17 +153,4 @@ export const signin = async (req: Request, res: Response) => {
 //   }
 // };
 
-export const signout = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    cookies.clear(res, 'token');
-    logger.info('User signed out successfully');
-    res.status(200).json({ message: 'User signed out successfully' });
-  } catch (error) {
-    logger.error('Signout error', error);
-    next(error);
-  }
-};
+

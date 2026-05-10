@@ -6,7 +6,7 @@ interface IPayload {
   email: string;
   role: string;
 }
-
+export type DecodedToken = jwt.JwtPayload & IPayload
 const JWT_SECRET =
   process.env.JWT_SECRET || 'your-secret-key-please-change-in-production';
 const JWT_EXPIRES = '1d';
@@ -23,9 +23,9 @@ export const jwttoken = {
     }
   },
 
-  verify: (token: string): jwt.JwtPayload => {
+  verify: (token: string): DecodedToken => {
     try {
-      return jwt.verify(token, JWT_SECRET) as jwt.JwtPayload;
+      return jwt.verify(token, JWT_SECRET) as DecodedToken;
     } catch (error: unknown) {
       logger.error('JWT Verification Failed', { error });
 

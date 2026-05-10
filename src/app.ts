@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import logger from '#config/logger.js';
 import authRoutes from '#routes/auth.routes.js';
 import { globalErrorHandler } from '#middleware/error.middleware.js';
+import securityMiddleware from '#middleware/security.middleware.js';
 
 const app = express();
 app.use(helmet());
@@ -20,12 +21,16 @@ app.use(
   })
 );
 
+
+app.use(securityMiddleware);
+
+
 app.get('/', (req: Request, res: Response) => {
   logger.info('Hello from logger');
   res.status(200).send('Hello from Acquisitions!');
 });
 
-app.get('health', (req: Request, res: Response) => {
+app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({
     status: 'OK',
     timestamp: new Date().toISOString(),
