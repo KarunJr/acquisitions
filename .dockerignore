@@ -1,0 +1,33 @@
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Git
+.git
+.gitignore
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# Docker files
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Editor settings
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+
+# Build outputs (if applicable)
+dist
+build
+out
+
+# Documentation
+README.md
+LICENSE

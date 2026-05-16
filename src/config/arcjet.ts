@@ -9,6 +9,7 @@ const aj = arcjet({
       allow: [
         'CATEGORY:SEARCH_ENGINE',
         'CATEGORY:PREVIEW', // Link previews e.g. Slack, Discord
+        'POSTMAN'
       ],
     }),
     slidingWindow({
